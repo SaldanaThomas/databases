@@ -4,26 +4,16 @@ CREATE DATABASE chat;
 
 USE chat;
 
-CREATE TABLE rooms (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  roomname VARCHAR(20)
-);
-
 CREATE TABLE messages (
   message_id INT AUTO_INCREMENT PRIMARY KEY,
-  user VARCHAR(24),
-  text VARCHAR(20),
-  campus VARCHAR(20),
-  created_at VARCHAR(24),
-  github_handle VARCHAR(24),
-  updated_at VARCHAR(20),
-  room INT,
-  FOREIGN KEY (room) REFERENCES rooms(id)
+  user VARCHAR(24) NOT NULL,
+  msg VARCHAR(50) NOT NULL,
+  room VARCHAR(20) NOT NULL
 );
 
 CREATE TABLE users (
   id INT AUTO_INCREMENT PRIMARY KEY,
-  username VARCHAR(20)
+  username VARCHAR(20) NOT NULL
 );
 
 /*  Execute this file from the command line by typing:
