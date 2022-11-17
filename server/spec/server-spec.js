@@ -16,7 +16,7 @@ describe('Persistent Node Chat Server', () => {
   beforeAll((done) => {
     dbConnection.connect();
 
-       const tablename = ''; // TODO: fill this out
+    const tablename = 'messages';
 
     /* Empty the db table before all tests so that multiple tests
      * (or repeated runs of the tests)  will not fail when they should be passing
@@ -43,8 +43,8 @@ describe('Persistent Node Chat Server', () => {
 
         /* TODO: You might have to change this test to get all the data from
          * your message table, since this is schema-dependent. */
-        const queryString = 'SELECT * FROM messages';
-        const queryArgs = [];
+        const queryString = 'SELECT user, text, room FROM messages';
+        const queryArgs = [username, message, roomname];//!?!?!?!?!?!?!?!?!?!?!?!/
 
         dbConnection.query(queryString, queryArgs, (err, results) => {
           if (err) {
@@ -65,8 +65,8 @@ describe('Persistent Node Chat Server', () => {
 
   it('Should output all messages from the DB', (done) => {
     // Let's insert a message into the db
-       const queryString = '';
-       const queryArgs = [];
+    const queryString = 'SELECT * FROM messages';
+    const queryArgs = [];//!?!?!?!?!?!?!!?!?!
     /* TODO: The exact query string and query args to use here
      * depend on the schema you design, so I'll leave them up to you. */
     dbConnection.query(queryString, queryArgs, (err) => {

@@ -11,7 +11,7 @@ CREATE TABLE rooms (
 
 CREATE TABLE messages (
   message_id INT AUTO_INCREMENT PRIMARY KEY,
-  username VARCHAR(24),
+  user VARCHAR(24),
   text VARCHAR(20),
   campus VARCHAR(20),
   created_at VARCHAR(24),
