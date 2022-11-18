@@ -7,7 +7,8 @@ module.exports = {
     });
   },
   create: function (user, msg, room, callback) {
-    db.connection.query(`INSERT INTO messages (user, msg, room) VALUES ('${user}', '${msg}', '${room}')`, (err, data) => {
+    console.log(`USER = ${user}, MSG = ${msg}, ROOM = ${room}`);
+    db.connection.query(`INSERT INTO messages (user, msg, room) VALUES ('${user}', "${msg}", '${room}')`, (err, data) => {
       callback(err, data);
     });
   }

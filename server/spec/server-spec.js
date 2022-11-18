@@ -13,20 +13,17 @@ describe('Persistent Node Chat Server', () => {
     database: 'chat',
   });
 
-  // beforeAll((done) => {
-  //   dbConnection.connect();
+  beforeAll((done) => {
+    dbConnection.connect();
+    const tablename = 'messages';
+    const people = 'users';
+    dbConnection.query(`DELETE FROM ${people} WHERE id > 0`, done);
+    dbConnection.query(`DELETE FROM ${tablename} WHERE message_id > 0`, done);
+  }, 6500);
 
-  //   const tablename = 'messages';
-
-  //   /* Empty the db table before all tests so that multiple tests
-  //    * (or repeated runs of the tests)  will not fail when they should be passing
-  //    * or vice versa */
-  //   dbConnection.query(`truncate ${tablename}`, done);
-  // }, 6500);
-
-  // afterAll(() => {
-  //   dbConnection.end();
-  // });
+  afterAll(() => {
+    dbConnection.end();
+  });
 
   const user = 'Valjean';
   const msg = 'In mercy\'s name, three days is all I need.';
@@ -55,7 +52,7 @@ describe('Persistent Node Chat Server', () => {
           expect(results.length).toEqual(1);
 
           // TODO: If you don't have a column named text, change this test.
-          expect(results[0].text).toEqual(text);
+          expect(results[0].msg).toEqual(msg);
           done();
         });
       })
